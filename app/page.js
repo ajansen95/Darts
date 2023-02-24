@@ -1,91 +1,87 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+"use client"
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
+        <main className="flex flex-col h-screen">
+            <nav className="h-10"></nav>
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+            <div className="bg-slate-900 flex items-center justify-center border border-dashed flex-1">
+                <div id="leftSpacing" className="flex-1 h-full"></div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
+                <div id="video">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="http://192.168.178.23:5000/video" alt="video"/>
+                </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+                <div id="rightSpacing" className="flex-1 h-full">
+                    <div id="rightMenu" className="flex flex-col w-2/5 h-full bg-green-500 ml-auto">
+
+                        <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
+                            <p className="text-4xl font-bold">Last</p>
+                            <div className="bg-red-500 h-20 w-44"></div>
+                        </div>
+
+                        <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
+                            <p className="text-4xl font-bold">Best</p>
+                            <div className="bg-red-500 h-20 w-44"></div>
+                        </div>
+
+                        <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
+                            <p className="text-4xl font-bold">Worst</p>
+                            <div className="bg-red-500 h-20 w-44"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex flex-row bg-yellow-200 h-36 justify-center items-center">
+                <div className="mr-auto ml-5 border border-dashed border-black">
+                    <p className="text-4xl font-bold">Game</p>
+                    <div className="bg-red-500 h-20 w-44"></div>
+                </div>
+
+                <div className="m-5 border border-dashed border-black">
+                    <p className="text-4xl font-bold">P1</p>
+                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                        <p className="text-4xl font-bold text-white">301</p>
+                    </div>
+                </div>
+                <div className="m-5 border border-dashed border-black">
+                    <p className="text-4xl font-bold">P2</p>
+                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                        <p className="text-4xl font-bold text-white">301</p>
+                    </div>
+                </div>
+                <div className="m-5 border border-dashed border-black">
+                    <p className="text-4xl font-bold">P3</p>
+                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                        <p className="text-4xl font-bold text-white">301</p>
+                    </div>
+                </div>
+                <div className="m-5 border border-dashed border-black">
+                    <p className="text-4xl font-bold">P4</p>
+                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                        <p className="text-4xl font-bold text-white">301</p>
+                    </div>
+                </div>
+
+                <div className="ml-auto mr-5 border border-dashed border-black">
+                    <p className="text-4xl font-bold">Player</p>
+                    <div className="bg-red-500 h-20 w-44"></div>
+                </div>
+            </div>
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {/*
+            <img src="http://192.168.178.23:5000/video" alt="video"/>
+            <Score_old/>
+            <h1 className="text-3xl font-bold underline">
+                Hello world!
+            </h1>
+            <Alert color="info">Alert!</Alert>
+            */}
+        </main>
   )
 }
