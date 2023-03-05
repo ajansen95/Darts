@@ -1,5 +1,7 @@
 "use client"
 
+import Score from "@/app/components/score";
+
 export default function Home() {
   return (
 
@@ -19,7 +21,9 @@ export default function Home() {
 
                         <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
                             <p className="text-4xl font-bold">Last</p>
-                            <div className="bg-red-500 h-20 w-44"></div>
+                            <div className="bg-red-500 h-20 w-44">
+                                <Score></Score>
+                            </div>
                         </div>
 
                         <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">

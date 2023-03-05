@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:5000');
 
-function Score_old() {
+function Score() {
     const [score, setScore] = useState({
         number: null,
         multiplier: null
@@ -13,33 +13,38 @@ function Score_old() {
 
     useEffect(() => {
         socket.on('score', (newScore) => {
-            console.log(newScore)
+            //console.log(newScore)
             setScore(newScore)
-            console.log(score)
+            //console.log(score)
         });
+
 
         return () => {
             socket.off('score');
         };
     }, [score]);
 
+
+    useEffect(() => {
+        requestScore()
+    }, []);
+
+
     const requestScore = () => {
         console.log("requesting score...")
         socket.emit('score_request');
     }
+
 
     const stopScore = () => {
         console.log("stopping score...")
         socket.emit('score_stop');
     }
 
+
     return (
-        <div>
-            {/*<button onClick={ requestScore }>Request scores</button>*/}
-            {/*<button onClick={ stopScore }>Stop scores</button>*/}
-            <p className="text-4xl">{score.multiplier + " x " + score.number}</p>
-        </div>
+        <p className="text-4xl font-bold text-white">{score.multiplier + " x " + score.number}</p>
     );
 }
 
-export default Score_old;
+export default Score;
