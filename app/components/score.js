@@ -1,28 +1,32 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {setLastThrow} from "@/app/GlobalRedux/Features/score/scoreSlice";
 
 const socket = io('http://localhost:5000');
 
-function Score() {
-    const [score, setScore] = useState({
-        number: null,
-        multiplier: null
-    });
+export default function Score() {
+
+    const lastThrow = useSelector(state => state.score.lastThrow)
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         socket.on('score', (newScore) => {
-            //console.log(newScore)
-            setScore(newScore)
-            //console.log(score)
+            console.log("newScore: " + JSON.stringify(newScore))
+            dispatch(setLastThrow({
+                number: newScore.number,
+                multiplier: newScore.multiplier,
+            }));
         });
 
 
         return () => {
             socket.off('score');
         };
-    }, [score]);
+    }, [dispatch]);
 
 
     useEffect(() => {
@@ -36,15 +40,8 @@ function Score() {
     }
 
 
-    const stopScore = () => {
-        console.log("stopping score...")
-        socket.emit('score_stop');
-    }
-
-
     return (
-        <p className="text-4xl font-bold text-white">{score.multiplier + " x " + score.number}</p>
+        <p className="text-4xl font-bold text-white">{lastThrow.multiplier + " x " + lastThrow.number}</p>
     );
 }
 
-export default Score;
