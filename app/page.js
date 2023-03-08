@@ -1,13 +1,12 @@
 "use client"
 
-import Score from "@/app/components/score";
+import Score from "@/app/Components/score";
 import {useDispatch, useSelector} from "react-redux";
 
 export default function Home() {
 
     const player = useSelector(state => state.player)
     const scores = useSelector(state => state.player.scores)
-    const dispatch = useDispatch();
 
     return (
 
@@ -19,7 +18,7 @@ export default function Home() {
 
                 <div id="video">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="http://192.168.178.75:5000/video" alt="video"/>
+                    <img src="http://192.168.178.60:5000/video" alt="video"/>
                 </div>
 
                 <div id="rightSpacing" className="flex-1 h-full">
@@ -27,12 +26,12 @@ export default function Home() {
 
                         <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
                             <p className="text-4xl font-bold">Last</p>
-                            <div className="bg-red-500 h-20 w-44">
+                            <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
                                 <Score></Score>
                             </div>
                         </div>
 
-                        <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
+                        {/*<div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
                             <p className="text-4xl font-bold">Best</p>
                             <div className="bg-red-500 h-20 w-44"></div>
                         </div>
@@ -40,7 +39,7 @@ export default function Home() {
                         <div className="h-min ml-auto mt-5 mr-5 border border-dashed border-black">
                             <p className="text-4xl font-bold">Worst</p>
                             <div className="bg-red-500 h-20 w-44"></div>
-                        </div>
+                        </div>*/}
 
                     </div>
                 </div>
@@ -83,15 +82,6 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            {/*
-            <img src="http://192.168.178.23:5000/video" alt="video"/>
-            <Score_old/>
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
-            <Alert color="info">Alert!</Alert>
-            */}
         </main>
   )
 }

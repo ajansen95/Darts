@@ -30,12 +30,12 @@ export default function Score() {
 
 
     useEffect(() => {
+        console.log("requesting score...")
         requestScore()
     }, []);
 
 
     const requestScore = () => {
-        console.log("requesting score...")
         socket.emit('score_request');
     }
 
