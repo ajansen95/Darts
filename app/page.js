@@ -1,9 +1,15 @@
 "use client"
 
 import Score from "@/app/components/score";
+import {useDispatch, useSelector} from "react-redux";
 
 export default function Home() {
-  return (
+
+    const player = useSelector(state => state.player)
+    const scores = useSelector(state => state.player.scores)
+    const dispatch = useDispatch();
+
+    return (
 
         <main className="flex flex-col h-screen">
             <nav className="h-10"></nav>
@@ -46,28 +52,28 @@ export default function Home() {
                     <div className="bg-red-500 h-20 w-44"></div>
                 </div>
 
-                <div className="m-5 border border-dashed border-black">
+                <div className={`m-5 border ${player.activePlayer === 1 ? 'border-dashed border-black' : ''}`}>
                     <p className="text-4xl font-bold">P1</p>
                     <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
-                        <p className="text-4xl font-bold text-white">301</p>
+                        <p className="text-4xl font-bold text-white">{scores.player1}</p>
                     </div>
                 </div>
                 <div className="m-5 border border-dashed border-black">
                     <p className="text-4xl font-bold">P2</p>
                     <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
-                        <p className="text-4xl font-bold text-white">301</p>
+                        <p className="text-4xl font-bold text-white">{scores.player2}</p>
                     </div>
                 </div>
                 <div className="m-5 border border-dashed border-black">
                     <p className="text-4xl font-bold">P3</p>
                     <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
-                        <p className="text-4xl font-bold text-white">301</p>
+                        <p className="text-4xl font-bold text-white">{scores.player3}</p>
                     </div>
                 </div>
                 <div className="m-5 border border-dashed border-black">
                     <p className="text-4xl font-bold">P4</p>
                     <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
-                        <p className="text-4xl font-bold text-white">301</p>
+                        <p className="text-4xl font-bold text-white">{scores.player4}</p>
                     </div>
                 </div>
 
