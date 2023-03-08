@@ -21,7 +21,7 @@ export default function Home() {
 
                 <div id="video">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="http://192.168.178.60:5000/video" alt="video" width="860"/>
+                    <img src="http://192.168.178.60:5000/video" alt="video" width="820"/>
                 </div>
 
                 <div id="rightSpacing" className="flex-1 h-full">
