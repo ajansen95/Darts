@@ -1,6 +1,7 @@
 'use client';
 
 import { createSlice } from '@reduxjs/toolkit'
+import {socket} from "@/app/page";
 
 const initialState = {
     activePlayer: 1,
@@ -23,6 +24,7 @@ const playerSlice = createSlice({
             else
                 state.activePlayer += 1;
             state.throwsCurrentPlayer = 0;
+            socket.emit("reset")
         },
         increaseThrows(state) {
             state.throwsCurrentPlayer +=1;

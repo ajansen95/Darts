@@ -1,12 +1,10 @@
 "use client"
 
-import io from 'socket.io-client';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {setLastThrow} from "@/app/GlobalRedux/Features/score/scoreSlice";
 import {decreasePlayerPoints, increaseThrows} from "@/app/GlobalRedux/Features/player/playerSlice";
-
-const socket = io('http://localhost:5000');
+import {socket} from "@/app/page";
 
 export default function Score() {
 

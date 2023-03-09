@@ -4,6 +4,9 @@ import Score from "@/app/Components/score";
 import {useDispatch, useSelector} from "react-redux";
 import {nextPlayer} from "@/app/GlobalRedux/Features/player/playerSlice";
 import SettingsModal from "@/app/Components/settingsModal";
+import io from "socket.io-client";
+
+export const socket = io('http://localhost:5000');
 
 export default function Home() {
 
