@@ -21,7 +21,7 @@ export default function Home() {
 
                 <div id="video">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="http://192.168.178.60:5000/video" alt="video" width="820"/>
+                    <img src="http://192.168.178.75:5000/video" alt="video" width="820"/>
                 </div>
 
                 <div id="rightSpacing" className="flex-1 h-full">
@@ -29,14 +29,14 @@ export default function Home() {
 
                         <div className="h-min ml-auto mt-5 mr-5">
                             <p className="text-4xl font-bold">Last</p>
-                            <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                            <div className="flex bg-red-500 h-20 w-44 border-4 border-red-500 rounded justify-center items-center">
                                 <Score></Score>
                             </div>
                         </div>
 
                         <div className="h-min ml-auto mt-5 mr-5">
                             <p className="text-4xl font-bold">Throws</p>
-                            <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                            <div className="flex bg-red-500 h-20 w-44 border-4 border-red-500 rounded justify-center items-center">
                                 <p className="text-4xl font-bold text-white">{throwsCurrentPlayer}</p>
                             </div>
                         </div>
@@ -62,25 +62,25 @@ export default function Home() {
 
                 <div className={`m-5  ${activePlayer === 1 ? 'border-8 border-dashed border-green-500' : ''}`}>
                     <p className="text-4xl font-bold">P1</p>
-                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                    <div className="flex bg-red-500 h-20 w-44 border-4 border-red-500 rounded justify-center items-center">
                         <p className="text-4xl font-bold text-white">{scores.player1}</p>
                     </div>
                 </div>
                 <div className={`m-5 ${activePlayer === 2 ? 'border-8 border-dashed border-green-500' : ''}`}>
                     <p className="text-4xl font-bold">P2</p>
-                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                    <div className="flex bg-red-500 h-20 w-44 border-4 border-red-500 rounded justify-center items-center">
                         <p className="text-4xl font-bold text-white">{scores.player2}</p>
                     </div>
                 </div>
                 <div className={`m-5 ${activePlayer === 3 ? 'border-8 border-dashed border-green-500' : ''}`}>
                     <p className="text-4xl font-bold">P3</p>
-                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                    <div className="flex bg-red-500 h-20 w-44 border-4 border-red-500 rounded justify-center items-center">
                         <p className="text-4xl font-bold text-white">{scores.player3}</p>
                     </div>
                 </div>
                 <div className={`m-5 ${activePlayer === 4 ? 'border-8 border-dashed border-green-500' : ''}`}>
                     <p className="text-4xl font-bold">P4</p>
-                    <div className="flex bg-red-500 h-20 w-44 justify-center items-center">
+                    <div className="flex bg-red-500 h-20 w-44 border-4 border-red-500 rounded justify-center items-center">
                         <p className="text-4xl font-bold text-white">{scores.player4}</p>
                     </div>
                 </div>
