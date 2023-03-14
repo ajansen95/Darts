@@ -1,25 +1,26 @@
 "use client"
 
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {setLastThrow} from "@/app/GlobalRedux/Features/score/scoreSlice";
 import {decreasePlayerPoints, increaseThrows} from "@/app/GlobalRedux/Features/player/playerSlice";
+import {SocketContext} from "@/app/GlobalRedux/provider";
 
 export default function Score() {
 
     const lastThrow = useSelector(state => state.score.lastThrow)
     const throwsCurrentPlayer = useSelector(state => state.player.throwsCurrentPlayer)
-    const socket = useSelector(state => state.network.socketConnection)
     const dispatch = useDispatch();
+    const [socketConn] = useContext(SocketContext)
 
 
     useEffect(() => {
         console.log("requesting score...")
-        socket?.emit('score_request');
-    }, [socket]);
+        socketConn?.emit('score_request');
+    }, [socketConn]);
 
     useEffect(() => {
-        socket?.on('score', (newScore) => {
+        socketConn?.on('score', (newScore) => {
             console.log("newScore: " + JSON.stringify(newScore))
             console.log("throwsCurrentPlayer is: " + throwsCurrentPlayer)
             if (throwsCurrentPlayer < 3) {
@@ -33,9 +34,9 @@ export default function Score() {
         });
 
         return () => {
-            socket?.off('score');
+            socketConn?.off('score');
         };
-    }, [dispatch, socket, throwsCurrentPlayer]);
+    }, [dispatch, socketConn, throwsCurrentPlayer]);
 
     
     return (

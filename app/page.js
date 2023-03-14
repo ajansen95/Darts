@@ -6,8 +6,8 @@ import {nextPlayer} from "@/app/GlobalRedux/Features/player/playerSlice";
 import SettingsModal from "@/app/Components/settingsModal";
 import io from "socket.io-client";
 import {toggleSettingsOpen} from "@/app/GlobalRedux/Features/settings/settingsSlice";
-import {useEffect} from "react";
-import {setSocketConnection} from "@/app/GlobalRedux/Features/network/networkSlice";
+import {useContext, useEffect} from "react";
+import {SocketContext} from "@/app/GlobalRedux/provider";
 
 
 export default function Home() {
@@ -16,18 +16,16 @@ export default function Home() {
     const scores = useSelector(state => state.player.scores)
     const throwsCurrentPlayer = useSelector(state => state.player.throwsCurrentPlayer)
     const backendIp = useSelector(state => state.network.backendIp)
-    const socket = useSelector(state => state.network.socketConnection)
     const dispatch = useDispatch()
+    const [socketConn, setSocketConn] = useContext(SocketContext)
 
     useEffect(() => {
-        console.log("backendIp changed")
         if (backendIp !== null){
-            console.log("backendIp is  not null")
             const backendServerURL = 'http://' + backendIp + ':5000'
-            const socket = io(backendServerURL)
-            dispatch(setSocketConnection(socket))
+            const socket_conn = io(backendServerURL)
+            setSocketConn(socket_conn)
         }
-    },[backendIp, dispatch])
+    },[backendIp])
 
     return (
 
@@ -106,7 +104,7 @@ export default function Home() {
                     <button className="h-20 w-44 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                             onClick={() => {
                                 dispatch(nextPlayer())
-                                socket?.emit("reset")
+                                socketConn.emit("reset")
                             }}>
                         Player
                     </button>
