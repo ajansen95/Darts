@@ -6,15 +6,28 @@ import {nextPlayer} from "@/app/GlobalRedux/Features/player/playerSlice";
 import SettingsModal from "@/app/Components/settingsModal";
 import io from "socket.io-client";
 import {toggleSettingsOpen} from "@/app/GlobalRedux/Features/settings/settingsSlice";
+import {useEffect} from "react";
+import {setSocketConnection} from "@/app/GlobalRedux/Features/network/networkSlice";
 
-export const socket = io('http://192.168.178.75:5000');
 
 export default function Home() {
 
     const activePlayer = useSelector(state => state.player.activePlayer)
     const scores = useSelector(state => state.player.scores)
     const throwsCurrentPlayer = useSelector(state => state.player.throwsCurrentPlayer)
+    const backendIp = useSelector(state => state.network.backendIp)
+    const socket = useSelector(state => state.network.socketConnection)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        console.log("backendIp changed")
+        if (backendIp !== null){
+            console.log("backendIp is  not null")
+            const backendServerURL = 'http://' + backendIp + ':5000'
+            const socket = io(backendServerURL)
+            dispatch(setSocketConnection(socket))
+        }
+    },[backendIp, dispatch])
 
     return (
 
@@ -90,7 +103,11 @@ export default function Home() {
                 </div>
 
                 <div className="ml-auto mr-5">
-                    <button className="h-20 w-44 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {dispatch(nextPlayer())}}>
+                    <button className="h-20 w-44 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            onClick={() => {
+                                dispatch(nextPlayer())
+                                socket?.emit("reset")
+                            }}>
                         Player
                     </button>
                 </div>

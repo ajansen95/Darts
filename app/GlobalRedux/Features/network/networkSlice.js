@@ -2,7 +2,10 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { backendIp: null }
+const initialState = {
+    backendIp: null,
+    socketConnection: null
+}
 
 const networkSlice = createSlice({
     name: 'network',
@@ -10,9 +13,13 @@ const networkSlice = createSlice({
     reducers: {
         setBackendIp(state, action) {
             state.backendIp = action.payload
+        },
+        setSocketConnection(state, action) {
+            state.socketConnection = action.payload
         }
     },
 })
 
-export const { setBackendIp } = networkSlice.actions
+
+export const { setBackendIp, setSocketConnection } = networkSlice.actions
 export default networkSlice.reducer
