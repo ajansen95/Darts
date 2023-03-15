@@ -66,7 +66,7 @@ export default function GameModal() {
                                             dispatch(toggleGameModal())
                                             dispatch(newGame())
                                             dispatch(resetLastThrow())
-                                            socketConn.emit("reset")
+                                            socketConn?.emit("reset")
                                         }}
                                     >
                                         Start new Game
