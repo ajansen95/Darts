@@ -54,7 +54,7 @@ export default function Home() {
 
                     {socketConn?.connected ?
                         /* eslint-disable-next-line @next/next/no-img-element */
-                        <img className="ml-56" src={`http://${backendIp}:5000/video`} alt="video" width="720"/> :
+                        <img className="ml-56" src={`http://${backendIp}:5000/video`} alt="video" width="820"/> :
                         <div className="w-96">
                             <p className="text-4xl font-bold text-white">Not connected to Darts video server</p>
                             <p className="text-xl font-bold text-white">Press &quot;Open Settings&quot; or on the corresponding icon in the upper right corner</p>
