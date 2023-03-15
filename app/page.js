@@ -28,8 +28,8 @@ export default function Home() {
         }
     },[backendIp])
 
-    return (
 
+    return (
         <main className="flex flex-col h-screen">
             <nav className="h-10 bg-gray-900">
                 <div className="w-full h-full flex justify-end items-center p-3">
@@ -47,9 +47,9 @@ export default function Home() {
 
                 <div id="video">
 
-                    {backendIp !== null ?
+                    {socketConn?.connected ?
                         /* eslint-disable-next-line @next/next/no-img-element */
-                        <img src={`http://${backendIp}:5000/manipulated_video`} alt="video" width="720"/>:
+                        <img src={`http://${backendIp}:5000/video`} alt="video" width="720"/>:
                         <div>
                             <p className="text-4xl font-bold text-white">No Video Server connected, press</p>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
