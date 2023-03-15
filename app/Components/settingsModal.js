@@ -1,15 +1,16 @@
 'use client'
 
-import {Fragment, useRef, useState} from 'react'
+import {Fragment, useContext, useRef, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import {toggleSettingsOpen} from "@/app/GlobalRedux/Features/settings/settingsSlice";
 import {setBackendIp} from "@/app/GlobalRedux/Features/network/networkSlice";
+import {SocketContext} from "@/app/GlobalRedux/provider";
 
 export default function SettingsModal() {
+    const [socketConn] = useContext(SocketContext)
     const settings = useSelector(state => state.settings)
-    const backendIp = useSelector(state => state.network.backendIp)
     const dispatch = useDispatch()
     const cancelButtonRef = useRef(null)
     const [ip, setIp] = useState(null)
@@ -60,8 +61,7 @@ export default function SettingsModal() {
                                                     placeholder="IP-address"
                                                     onChange={(e) => setIp(e.target.value)}
                                                 />
-                                                <p>{ip}</p>
-                                                <p>{backendIp}</p>
+                                                {socketConn?.connected && <p>Successfully connected to the video server</p>}
                                             </div>
                                         </div>
                                     </div>

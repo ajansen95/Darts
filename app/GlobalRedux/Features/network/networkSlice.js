@@ -17,5 +17,5 @@ const networkSlice = createSlice({
 })
 
 
-export const { setBackendIp, setSocketConnection } = networkSlice.actions
+export const { setBackendIp } = networkSlice.actions
 export default networkSlice.reducer
