@@ -4,7 +4,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     backendIp: null,
-    socketConnection: null
 }
 
 const networkSlice = createSlice({
@@ -13,9 +12,6 @@ const networkSlice = createSlice({
     reducers: {
         setBackendIp(state, action) {
             state.backendIp = action.payload
-        },
-        setSocketConnection(state, action) {
-            state.socketConnection = action.payload
         }
     },
 })

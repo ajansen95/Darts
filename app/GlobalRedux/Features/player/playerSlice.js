@@ -10,13 +10,24 @@ const initialState = {
         player3: 301,
         player4: 301
     },
-    throwsCurrentPlayer: 0
+    throwsCurrentPlayer: 0,
+    gameModal: {
+        open: false
+    }
 }
 
 const playerSlice = createSlice({
     name: 'player',
     initialState,
     reducers: {
+        toggleGameModal(state) {
+            state.gameModal.open = !state.gameModal.open
+        },
+        newGame(state) {
+            Object.keys(state.scores).forEach(k => state.scores[k] = 301)
+            state.throwsCurrentPlayer = 0
+            state.activePlayer = 1
+        },
         nextPlayer(state) {
             if (state.activePlayer === 4)
                 state.activePlayer = 1;
@@ -48,5 +59,5 @@ const playerSlice = createSlice({
     },
 })
 
-export const { nextPlayer, increaseThrows, decreasePlayerPoints } = playerSlice.actions
+export const { nextPlayer, increaseThrows, decreasePlayerPoints, newGame, toggleGameModal } = playerSlice.actions
 export default playerSlice.reducer

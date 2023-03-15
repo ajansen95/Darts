@@ -2,12 +2,13 @@
 
 import Score from "@/app/Components/score";
 import {useDispatch, useSelector} from "react-redux";
-import {nextPlayer} from "@/app/GlobalRedux/Features/player/playerSlice";
+import {nextPlayer, toggleGameModal} from "@/app/GlobalRedux/Features/player/playerSlice";
 import SettingsModal from "@/app/Components/settingsModal";
 import io from "socket.io-client";
 import {toggleSettingsOpen} from "@/app/GlobalRedux/Features/settings/settingsSlice";
 import {useContext, useEffect} from "react";
 import {SocketContext} from "@/app/GlobalRedux/provider";
+import GameModal from "@/app/Components/gameModal";
 
 
 export default function Home() {
@@ -45,8 +46,18 @@ export default function Home() {
                 <div id="leftSpacing" className="flex-1 h-full"></div>
 
                 <div id="video">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="http://192.168.178.75:5000/video" alt="video" width="720"/>
+
+                    {backendIp !== null ?
+                        /* eslint-disable-next-line @next/next/no-img-element */
+                        <img src={`http://${backendIp}:5000/manipulated_video`} alt="video" width="720"/>:
+                        <div>
+                            <p className="text-4xl font-bold text-white">No Video Server connected, press</p>
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Open Settings
+                            </button>
+                        </div>
+                    }
+
                 </div>
 
                 <div id="rightSpacing" className="flex-1 h-full">
@@ -72,7 +83,9 @@ export default function Home() {
 
             <div className="flex flex-row bg-gray-900 h-36 justify-center items-center">
                 <div className="mr-auto ml-5">
-                    <button className="h-20 w-44 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Game</button>
+                    <button className="h-20 w-44 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            onClick={() => {dispatch(toggleGameModal())}}
+                    >Game</button>
                 </div>
 
                 <div className={`m-5  ${activePlayer === 1 ? 'border-8 border-dashed border-green-500 rounded' : ''}`}>
@@ -112,6 +125,7 @@ export default function Home() {
             </div>
 
             <SettingsModal></SettingsModal>
+            <GameModal></GameModal>
 
         </main>
   )
