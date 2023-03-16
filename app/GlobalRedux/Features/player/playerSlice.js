@@ -13,7 +13,12 @@ const initialState = {
     throwsCurrentPlayer: 0,
     gameModal: {
         open: false
-    }
+    },
+    playerWonModal:{
+        open: false,
+        player: null,
+    },
+    gameFinished: false
 }
 
 const playerSlice = createSlice({
@@ -27,6 +32,7 @@ const playerSlice = createSlice({
             Object.keys(state.scores).forEach(k => state.scores[k] = 301)
             state.throwsCurrentPlayer = 0
             state.activePlayer = 1
+            state.gameFinished = false
         },
         nextPlayer(state) {
             if (state.activePlayer === 4)
@@ -41,23 +47,64 @@ const playerSlice = createSlice({
         decreasePlayerPoints(state, action) {
             switch(state.activePlayer) {
                 case 1:
-                    state.scores.player1 -= action.payload
+                    if ((state.scores.player1 - action.payload) <= 0) {
+                        state.scores.player1 = 0
+                        state.gameFinished = true
+                    } else
+                        state.scores.player1 -= action.payload
                     break;
                 case 2:
-                    state.scores.player2 -= action.payload
+                    if ((state.scores.player2 - action.payload) <= 0) {
+                        state.scores.player2 = 0
+                        state.gameFinished = true
+                    } else
+                        state.scores.player2 -= action.payload
                     break;
                 case 3:
-                    state.scores.player3 -= action.payload
+                    if ((state.scores.player3 - action.payload) <= 0) {
+                        state.scores.player3 = 0
+                        state.gameFinished = true
+                    } else
+                        state.scores.player3 -= action.payload
                     break;
                 case 4:
-                    state.scores.player4 -= action.payload
+                    if ((state.scores.player4 - action.payload) <= 0) {
+                        state.scores.player4 = 0
+                        state.gameFinished = true
+                    } else
+                        state.scores.player4 -= action.payload
                     break;
                 default:
                     console.log("player index does not exist")
             }
+        },
+        setPlayerPointsToZero(state) {
+            switch (state.activePlayer) {
+                case 1:
+                    state.scores.player1 = 0
+                    break;
+                case 2:
+                    state.scores.player2 = 0
+                    break;
+                case 3:
+                    state.scores.player3 = 0
+                    break;
+                case 4:
+                    state.scores.player4 = 0
+                    break;
+                default:
+                    console.log("player index does not exist")
+            }
+        },
+        showPlayerWonModal(state) {
+            state.playerWonModal.player = state.activePlayer
+            state.playerWonModal.open = !state.playerWonModal.open
+        },
+        togglePlayerWonModal(state) {
+            state.playerWonModal.open = !state.playerWonModal.open
         }
     },
 })
 
-export const { nextPlayer, increaseThrows, decreasePlayerPoints, newGame, toggleGameModal } = playerSlice.actions
+export const { nextPlayer, increaseThrows, decreasePlayerPoints, newGame, toggleGameModal, showPlayerWonModal, togglePlayerWonModal } = playerSlice.actions
 export default playerSlice.reducer

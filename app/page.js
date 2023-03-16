@@ -9,6 +9,7 @@ import {toggleSettingsOpen} from "@/app/GlobalRedux/Features/settings/settingsSl
 import {useContext, useEffect} from "react";
 import {SocketContext} from "@/app/GlobalRedux/provider";
 import GameModal from "@/app/Components/gameModal";
+import PlayerWonModal from "@/app/Components/playerWonModal";
 
 export default function Home() {
 
@@ -54,7 +55,7 @@ export default function Home() {
 
                     {socketConn?.connected ?
                         /* eslint-disable-next-line @next/next/no-img-element */
-                        <img className="ml-56" src={`http://${backendIp}:5000/manipulated_video`} alt="video" width="760"/> :
+                        <img className="ml-56" src={`http://${backendIp}:5000/video`} alt="video" width="760"/> :
                         <div className="w-96">
                             <p className="text-4xl font-bold text-white">Not connected to Darts video server</p>
                             <p className="text-xl font-bold text-white">Press &quot;Open Settings&quot; or on the corresponding icon in the upper right corner</p>
@@ -139,6 +140,7 @@ export default function Home() {
 
             <SettingsModal></SettingsModal>
             <GameModal></GameModal>
+            <PlayerWonModal></PlayerWonModal>
 
         </main>
   )
