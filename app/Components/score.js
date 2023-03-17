@@ -20,7 +20,7 @@ export default function Score() {
 
     useEffect(() => {
         console.log("requesting score...")
-        socketConn?.emit('score_request');
+        socketConn?.emit('request_random');
     }, [socketConn]);
 
     useEffect(() => {
