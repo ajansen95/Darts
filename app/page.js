@@ -53,7 +53,7 @@ export default function Home() {
 
                 <div className="flex items-center justify-center" id="video">
 
-                    {socketConn?.connected ?
+                    {backendIp ?
                         /* eslint-disable-next-line @next/next/no-img-element */
                         <img className="ml-56" src={`http://${backendIp}:5000/video`} alt="video" width="760"/> :
                         <div className="w-96">
