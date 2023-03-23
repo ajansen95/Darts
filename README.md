@@ -1,3 +1,5 @@
+# Darts-App (Darts-Frontend)
+
 Installation instructions:
 1. Download this repository
 2. Node.js must be installed (Node v18 recommended, latest LTS version)
